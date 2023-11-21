@@ -1,0 +1,236 @@
+body{
+    margin: 0px;
+}
+h1{
+    margin: 0px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    color: white;
+    padding-left: 20px;
+    font-family: Century Gothic;
+    font-weight: 500;
+    font-size: 38px;
+}
+.header{
+    margin: 0px;
+    background-color: #3399CC;
+}
+ul{
+    display: flex;
+    margin: 0px;
+    padding-left: 10px;
+}
+ul li{
+    color: white;
+    padding-left: 10px;
+    list-style: none;
+    padding: 8px;
+    font-weight: bold;
+    font-family: Century Gothic;
+}
+.navbar{
+    width: 100%;
+    background-color: black;
+}
+.navbar ul li:last-child{
+    position: absolute;
+    right: 0%;
+}
+.logo{
+    padding-top: 6px;
+}
+
+.adddialog {
+    position: absolute;
+    top: 53%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #afa2a2;
+    box-shadow: 0 2px 10px rgb(76 60 60 / 89%);
+}
+
+.mobileFields{
+    display: flex;
+    margin-bottom: 5px;
+}
+.inputName{
+    margin-top: 8px;
+    width: 97%;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}
+.teleInput{
+    margin-top: 8px;
+    padding-right: 24px;
+    padding: 5px;
+    padding-right: 15px;
+    border: 1px solid black;
+}
+.landInput{
+    margin-top: 8px;
+    padding: 5px;
+    padding-right: 24px;
+    border: 1px solid black;
+}
+.mobileInputField{
+    margin-right: 10px;  
+}
+.nameFields{
+    width: 100%;
+}
+.emailFields{
+    width: 100%;
+}
+textarea{
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+    border: 1px solid black;
+}
+.submitbtn{
+    border: none;
+    float: right;
+    margin-top: 5px;
+    font-family: Calibri Light;
+    font-weight: lighter;
+    color: white;
+    background-color:#468C00;
+    padding: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+label{
+    font-family: Calibri;
+}
+.validationmsg{
+    color: red;
+    font-family: calibri light;
+}
+ol{
+    list-style: none;
+}
+h3{
+    font-family: Century Gothic;
+    padding-left: 20px;
+    font-size: 15px;
+}
+.container{
+    width: 33%;
+}
+.container li{
+    font-family: calibri;
+    padding: 15px;
+    border: 1px solid #b0acac;
+}
+.container li:hover{
+    background-color: #CEE7F2;
+}
+.container li.active {
+    background-color: #CEE7F2;
+}
+.container li p{
+    margin: 0px;
+}
+.itemDetails{
+    width: 50%;
+    margin: 20px;
+}
+.list-item {
+    white-space: pre-line; /* Use pre-line to honor line breaks */
+}
+.contact-details{
+    position: relative;
+    display: flex;
+}
+.first-item {
+    font-size: 20px;
+}
+.editimage{
+    width: 12px;
+    margin-right: 8px;
+}
+.deleteimage{
+    margin-right: 5px;
+    width: 12px;
+}
+button{
+    border: none;
+    background-color: white;
+}
+.options{
+    display: none;
+
+}
+.edit-deleteopts{
+    padding: 10px;
+    font-family: calibri;
+    display: flex;
+}
+.icons{
+    display: flex;
+}
+.detailsname{
+    margin-top: 0px;
+}
+.edit-icon{
+    display: flex;
+}
+.containeritems{
+    width: 67%;
+    margin: 20px;
+    margin-left: 24px;
+}
+.edit-image{
+    width: 12px;
+    padding-left: 5em;
+}
+.editbtn{
+    font-size: 12px;
+}
+.delete-icon{
+    display: flex;
+}
+.delete-image{
+    width: 16px;
+    padding-top: 2px;
+    padding-left: 20px;
+}
+.deletebtn{
+    font-size: 12px;
+}
+.close-icon{
+    float: right;
+}
+.error_validation{
+    color: red;
+    font-family: calibri;
+}
+.list-item:first-child {
+    font-size: 16px; 
+}
+.hidden {
+    display: none;
+}
+.myform{
+    margin-right: 100px;
+}
+.mobilefield{
+    margin: 0px;
+}
+.landlinefield{
+    margin: 0px;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+.largefont{
+    font-size: 30px;
+    font-weight: lighter;
+    font-size: 28px;
+}
+.fontsize{
+    font-size: 27px;
+}
