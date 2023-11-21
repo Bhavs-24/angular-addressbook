@@ -34,7 +34,7 @@ import { Contact } from "./model";
     }
   
     getAllContacts(): Contact[] { 
-      debugger   
+      //debugger   
       var storedData = localStorage.getItem(this.localStorageKey);
       if (storedData) {
         this.contacts = JSON.parse(storedData);

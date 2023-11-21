@@ -12,13 +12,13 @@ export class HomepageComponent {
   contact!: Contact;
   errorMessage: string = '';
   validationMessage: string = '';
-  @ViewChild('showDialogButton') showDialogButton!: ElementRef;
-  @ViewChild('dialog') dialog!: ElementRef;
-  @ViewChild('telephoneInput') telephoneInput!: ElementRef;
-  @ViewChild('messageSpan') messageSpan!: ElementRef;
-  @ViewChild('emailInput') emailInput!: ElementRef;
-  @ViewChild('validationMessageSpan') validationMessageSpan!: ElementRef;
-  @ViewChild('selectedDetails') selectedDetails!: ElementRef;
+  // @ViewChild('showDialogButton') showDialogButton!: ElementRef;
+  // @ViewChild('dialog') dialog!: ElementRef;
+  // @ViewChild('telephoneInput') telephoneInput!: ElementRef;
+  // @ViewChild('messageSpan') messageSpan!: ElementRef;
+  // @ViewChild('emailInput') emailInput!: ElementRef;
+  // @ViewChild('validationMessageSpan') validationMessageSpan!: ElementRef;
+  // @ViewChild('selectedDetails') selectedDetails!: ElementRef;
 
   selectedEmail: string = '';
   selectedNameClass: boolean = false;
@@ -26,7 +26,9 @@ export class HomepageComponent {
 
   isDialogHidden: boolean = true;
   isAddButtonVisible: boolean = true;
-  isOptionsVisible: boolean = true;
+  isOptionsVisible: boolean = false;
+  messageSpan:boolean = false;
+  validationMessageSpan:boolean = false;
 
  // contactService = new ContactService();
   selectedItem: any = null;
@@ -55,27 +57,27 @@ export class HomepageComponent {
   closeDialog() {
     this.isDialogHidden = true;
   }
-  onTelephoneKeyUp() {
-    const value = this.telephoneInput.nativeElement.value;
+  onTelephoneKeyUp(value:string) {
+    // const value = this.telephoneInput.nativeElement.value;
     this.phonecheck(value);
   }
 
   phonecheck(value: string) {
-    const message = this.messageSpan.nativeElement;
-
     if (value.length !== 10) {
-      message.innerText = "Must be 10 digits";
+      this.messageSpan = true;
     } else {
-      message.innerText = "";
+     this. messageSpan = false;
     }
   }
   fieldfocus() {
     const emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!emailpattern.test(this.contact.email)) {
-      this.validationMessageSpan.nativeElement.innerText = "Please enter a valid email";
+      this.validationMessageSpan = true;
+      //this.validationMessageSpan.nativeElement.innerText = "Please enter a valid email";
     } else {
-      this.validationMessageSpan.nativeElement.innerText = "";
+      this.validationMessageSpan = false;
+     // this.validationMessageSpan.nativeElement.innerText = "";
     }
   }
 
@@ -98,26 +100,27 @@ export class HomepageComponent {
       };
       console.log('Retrieved item with ID:', updatedContact);
       this.myFunction(); 
+      this.isDialogHidden = true;
     }
   }
   
   myFunction() {
-    debugger
+   // debugger
     this.contactList = this.contactService.getAllContacts();
     
   }
   
-  displayData(item: Contact) {
-    // debugger
-    // if (item && item.id) {
-    //   this.selectedNameClass = true; 
-    //   this.selectedItem = this.contactService.getContactById(item.id); 
-    //   if (this.selectedItem) {
-    //     this.selectedDetails.nativeElement.classList.remove('options');
-    //   } else {
-    //     console.log('Contact not found');
-    //   }
-    // }
+  displayData(item: Contact) { 
+    this.isOptionsVisible = true;
+    if (item && item.id) {
+      this.selectedNameClass = true; 
+      this.selectedItem = this.contactService.getContactById(item.id); 
+      if (this.selectedItem) {
+       // this.selectedDetails.nativeElement.classList.remove('options');
+      } else {
+        console.log('Contact not found');
+      }
+    }
   }
   
   
@@ -130,7 +133,15 @@ export class HomepageComponent {
   }
 
   deleteItem() {
-  
+  let deleteitem = this.contactService.deleteContactById(this.selectedItem.id);
+   if(deleteitem){
+    console.log('deleteitem',this.selectedItem);
+    this.myFunction();
+    this.isOptionsVisible = false;
+   }else{
+    console.log('not deleted');
+   }
+
   }
 
 }

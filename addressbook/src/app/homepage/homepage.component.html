@@ -14,33 +14,33 @@
         <div id="container-1" class="container">
             <h3>CONTACTS</h3>
             
-            <ol id="contactDetails">
-                <li *ngFor="let item of contactList" >
+            <ol id="contactDetails" >
+                <li *ngFor="let item of contactList" (click) = displayData(item) >
                     <p class="capitalize largefont">{{ item?.name }}</p>
                     <p>{{ item?.email }}</p>
                     <p>{{ item?.telephone }}</p>
-                  </li>
+                </li>
             </ol>
             
         </div>
 
         <div class="containeritems">
             <div id="itemDetails" class="itemDetails">
-                <div #selectedDetails [ngClass]="{'options': isOptionsVisible}">
+                <div #selectedDetails *ngIf = "isOptionsVisible">
                     
                     <div class="edit-deleteopts">
                         <div>
-                            <p id="selectedname" class="detailsname"></p>
-                            <p>Email:<span id="selectedemail"></span></p>
-                            <p class="mobilefield">Mobile:<span id="selectedmobile"></span></p>
-                            <p class="landlinefield">Landline:<span id="selectedlandline"></span></p>
-                            <p>Website:<span id="selectedwebsite"></span></p>
-                            <p>Address:<span id="selectedaddress"></span></p>
+                            <p  class="detailsname">{{selectedItem?.name}}</p>
+                            <p>Email:<span id="selectedemail"></span>{{selectedItem?.email}}</p>
+                            <p class="mobilefield">Mobile:<span id="selectedmobile">{{selectedItem?.telephone}}</span></p>
+                            <p class="landlinefield">Landline:<span id="selectedlandline">{{selectedItem?.landline}}</span></p>
+                            <p>Website:<span id="selectedwebsite"></span>{{selectedItem?.webaddress}}</p>
+                            <p>Address:<span id="selectedaddress"></span>{{selectedItem?.address}}</p>
                         </div>
                         <div class="icons">
                             <div class="edit-icon">
                                 <div>
-                                    <img class="edit-image" src="Assets/edit1.jpg">
+                                    <img class="edit-image" src="assets\edit1.jpg">
                                 </div>
                                 <div>
                                     <button (click)="editItem()" class="editbtn">EDIT</button>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="delete-icon">
                                 <div>
-                                    <img class="delete-image" src="Assets/delete2.png">
+                                    <img class="delete-image" src="assets\delete2.png">
                                 </div>
                                 <div>
                                     <button (click)="deleteItem()" class="deletebtn">DELETE</button>
@@ -84,7 +84,7 @@
                         <div>
                                 <input #emailInput class="inputName" type="email" id="email" required (change)="fieldfocus()" [(ngModel)]="contact.email">
                                 <span
-                                    class="validationmsg" id="validationMessage" ></span>
+                                    class="validationmsg" *ngIf="validationMessageSpan">Please enter a valid email</span>
                                      <span id="emailerror"
                                     class="error_fields"></span>
                         </div>
@@ -95,9 +95,9 @@
                                 <label><b>Mobile</b></label>
                             </div> 
                             <input #telephoneInput type="number" class="teleInput" id="telephone" required
-                            (keyup)="onTelephoneKeyUp()" [(ngModel)]="contact.telephone">
+                            (keyup)="onTelephoneKeyUp(contact.telephone)" [(ngModel)]="contact.telephone">
                             <div>
-                                <span #messageSpan  class="validationmsg"></span>
+                                <span *ngIf="messageSpan" class="validationmsg">Must be 10 digits</span>
                             </div>
                         </div>
                         <div class="landInputField">
