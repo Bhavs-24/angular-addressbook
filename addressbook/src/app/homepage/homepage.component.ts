@@ -5,7 +5,7 @@ import { Contact } from '../Services/model';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.scss'
+  styleUrl: './homepage.component.scss',
 })
 export class HomepageComponent {
 
@@ -55,26 +55,27 @@ export class HomepageComponent {
   closeDialog() {
     this.isDialogHidden = true;
   }
+  onTelephoneKeyUp() {
+    const value = this.telephoneInput.nativeElement.value;
+    this.phonecheck(value);
+  }
+
   phonecheck(value: string) {
-    const mobilenumber = this.telephoneInput.nativeElement;
     const message = this.messageSpan.nativeElement;
 
-    if (value.length > 10 || value.length < 10) {
+    if (value.length !== 10) {
       message.innerText = "Must be 10 digits";
     } else {
       message.innerText = "";
-    }  
+    }
   }
-
-fieldfocus() {
+  fieldfocus() {
     const emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const validationMessage = this.validationMessageSpan.nativeElement;
 
     if (!emailpattern.test(this.contact.email)) {
-      validationMessage.innerText = "Please enter a valid email";
+      this.validationMessageSpan.nativeElement.innerText = "Please enter a valid email";
     } else {
-      validationMessage.innerText = "";
-      // this.selectedEmail = emailValue;
+      this.validationMessageSpan.nativeElement.innerText = "";
     }
   }
 
@@ -101,21 +102,22 @@ fieldfocus() {
   }
   
   myFunction() {
+    debugger
     this.contactList = this.contactService.getAllContacts();
     
   }
   
   displayData(item: Contact) {
-    debugger
-    if (item && item.id) {
-      this.selectedNameClass = true; 
-      this.selectedItem = this.contactService.getContactById(item.id); 
-      if (this.selectedItem) {
-        this.selectedDetails.nativeElement.classList.remove('options');
-      } else {
-        console.log('Contact not found');
-      }
-    }
+    // debugger
+    // if (item && item.id) {
+    //   this.selectedNameClass = true; 
+    //   this.selectedItem = this.contactService.getContactById(item.id); 
+    //   if (this.selectedItem) {
+    //     this.selectedDetails.nativeElement.classList.remove('options');
+    //   } else {
+    //     console.log('Contact not found');
+    //   }
+    // }
   }
   
   

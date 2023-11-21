@@ -63,9 +63,13 @@
         <div #dialog [ngClass]="{'hidden': isDialogHidden,'adddialog':true}">
             <div id="myForm" class="myform">
                 <div class="contactForm">
-                    <div id="error_message" class="error_validation"></div>
+                    
                     <span class="close-icon" (click)="closeDialog()">&#x2716;</span>
+                    <div id="error_message" class="error_validation"></div>
                     <div class="nameFields">
+                        <div>
+                            <span #errorMessage  class="validationmsg"></span>
+                        </div>
                         <div>
                             <label for="name"><b>Name</b></label>
                         </div>
@@ -78,9 +82,11 @@
                             <label for="email"><b>Email</b></label>
                         </div>
                         <div>
-                            <input #emailInput class="inputName" type="email" id="email" required (change)="fieldfocus()"><span
-                                class="validationmsg" id="validationMessage" [(ngModel)]="contact.email"></span><span id="emailerror"
-                                class="error_fields"></span>
+                                <input #emailInput class="inputName" type="email" id="email" required (change)="fieldfocus()" [(ngModel)]="contact.email">
+                                <span
+                                    class="validationmsg" id="validationMessage" ></span>
+                                     <span id="emailerror"
+                                    class="error_fields"></span>
                         </div>
                     </div>
                     <div class="mobileFields">
@@ -88,11 +94,8 @@
                             <div>
                                 <label><b>Mobile</b></label>
                             </div> 
-                            <div>
-                                <input #telephoneInput type="number" class="teleInput" id="telephone" required
-                                    onkeyup="phonecheck(telephoneInput.value);" [(ngModel)]="contact.telephone">
-
-                            </div>
+                            <input #telephoneInput type="number" class="teleInput" id="telephone" required
+                            (keyup)="onTelephoneKeyUp()" [(ngModel)]="contact.telephone">
                             <div>
                                 <span #messageSpan  class="validationmsg"></span>
                             </div>
@@ -102,9 +105,9 @@
                                 <label><b>Landline</b></label>
                             </div>
                             <div>
-                                <input class="landInput" type="number" id="landline"
-                                    onkeyup="phonecheck(); return false;"><span id="message"
-                                    class="validationmsg" [(ngModel)]="contact.landline"></span>
+                                <input class="landInput" type="number" [(ngModel)]="contact.landline" id="landline"
+                                    ><span id="message"
+                                    class="validationmsg" ></span>
                             </div>
                         </div>
                     </div>
