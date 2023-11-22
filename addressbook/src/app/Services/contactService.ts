@@ -1,5 +1,9 @@
 import { Contact } from "./model";
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
  export class ContactService {
     localStorageKey = "Contacts";
     contacts: Contact[] = [

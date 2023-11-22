@@ -14,7 +14,7 @@
             <h3>CONTACTS</h3>
 
             <ol id="contactDetails">
-                <li *ngFor="let item of contactList" (click)=displayData(item)>
+                <li *ngFor="let item of contactList" (click)=displayData(item) [ngClass]="{'active': item === activeItem}">
                     <p class="capitalize largefont">{{ item?.name }}</p>
                     <p>{{ item?.email }}</p>
                     <p>{{ item?.telephone }}</p>
@@ -80,7 +80,7 @@
                             <label for="email"><b>Email</b></label>
                         </div>
                         <div>
-                            <input #emailInput class="inputName" type="email" id="email" required
+                            <input #emailInput class="inputName" type="email" required
                                 (change)="fieldfocus()" [(ngModel)]="contact.email">
                             <span class="validationmsg" *ngIf="validationMessageSpan">Please enter a valid email</span>
                             <span id="emailerror" class="error_fields"></span>
@@ -92,7 +92,7 @@
                                 <label><b>Mobile</b></label>
                             </div>
                             <input #telephoneInput type="number" class="teleInput" id="telephone" required
-                                (keyup)="onTelephoneKeyUp(contact.telephone)" [(ngModel)]="contact.telephone">
+                                 [(ngModel)]="contact.telephone"  (ngModelChange)="onTelephoneChange($event)">
                             <div>
                                 <span *ngIf="messageSpan" class="validationmsg">Must be 10 digits</span>
                             </div>

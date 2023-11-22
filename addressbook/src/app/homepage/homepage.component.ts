@@ -22,6 +22,7 @@ export class HomepageComponent {
   // contactService = new ContactService();
   selectedItem: any = null;
   selectedetails: any = null;
+  activeItem: any;
 
   constructor(private contactService: ContactService) { }
 
@@ -45,18 +46,27 @@ export class HomepageComponent {
   }
   closeDialog() {
     this.isDialogHidden = true;
+    this.contact = {
+      id: 0,
+      name: '',
+      email: '',
+      telephone: "",
+      landline: "",
+      webaddress: '',
+      address: '',
+    };
   }
-  onTelephoneKeyUp(value: string) {
+  // onTelephoneKeyUp(value: string) {
+  //   this.phonecheck(value);
+  // }
+onTelephoneChange(value: string) {
     this.phonecheck(value);
-  }
+}
 
-  phonecheck(value: string) {
-    if (value.length !== 10) {
-      this.messageSpan = true;
-    } else {
-      this.messageSpan = false;
-    }
-  }
+phonecheck(value: string) {
+    this.messageSpan = value.length !== 10;
+}
+
   fieldfocus() {
     const emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -95,6 +105,7 @@ export class HomepageComponent {
 
   displayData(item: Contact) {
     this.isOptionsVisible = true;
+    this.activeItem = item;
     if (item && item.id) {
       this.selectedNameClass = true;
       this.selectedItem = this.contactService.getContactById(item.id);
@@ -118,6 +129,7 @@ export class HomepageComponent {
     this.myFunction();
     this.displayData(this.selectedItem);
     this.isDialogHidden = true;
+    this.closeDialog();
   }
 
   deleteItem() {
@@ -131,6 +143,7 @@ export class HomepageComponent {
     }
 
   }
+  
 
 }
 
