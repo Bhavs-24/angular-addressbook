@@ -68,7 +68,6 @@ export class HomepageComponent {
 
   fieldfocus() {
     const emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
     if (!emailpattern.test(this.contact.email)) {
       this.validationMessageSpan = true;
     } else {
@@ -109,6 +108,7 @@ export class HomepageComponent {
       this.selectedNameClass = true;
       this.selectedItem = this.contactService.getContactById(item.id);
       if (this.selectedItem) {
+        console.log('contact displayed')
       } else {
         console.log('Contact not found');
       }
@@ -140,7 +140,6 @@ export class HomepageComponent {
     } else {
       console.log('not deleted');
     }
-
   }
 
 }
