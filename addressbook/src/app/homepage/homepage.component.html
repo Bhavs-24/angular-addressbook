@@ -60,13 +60,13 @@
 
         <div #dialog [ngClass]="{'hidden': isDialogHidden,'adddialog':true}">
             <div id="myForm" class="myform">
+                <!-- <span *ngIf="errormessage" class="error_validation">Please fill all the details</span> -->
                 <div class="contactForm">
-
+                  
                     <span class="close-icon" (click)="closeDialog()">&#x2716;</span>
-                    <div id="error_message" class="error_validation"></div>
+                  
                     <div class="nameFields">
                         <div>
-                            <span #errorMessage class="validationmsg"></span>
                         </div>
                         <div>
                             <label for="name"><b>Name</b></label>

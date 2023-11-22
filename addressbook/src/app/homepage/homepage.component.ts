@@ -10,7 +10,7 @@ import { Contact } from '../Services/model';
 export class HomepageComponent {
   contactList: any[] = [];
   contact!: Contact;
-  errorMessage: string = '';
+  errorMessage: boolean = false;
   validationMessage: string = '';
   selectedEmail: string = '';
   selectedNameClass: boolean = false;
@@ -19,7 +19,6 @@ export class HomepageComponent {
   isOptionsVisible: boolean = false;
   messageSpan: boolean = false;
   validationMessageSpan: boolean = false;
-  // contactService = new ContactService();
   selectedItem: any = null;
   selectedetails: any = null;
   activeItem: any;
@@ -59,12 +58,15 @@ export class HomepageComponent {
   // onTelephoneKeyUp(value: string) {
   //   this.phonecheck(value);
   // }
-onTelephoneChange(value: string) {
-    this.phonecheck(value);
-}
-
-phonecheck(value: string) {
-    this.messageSpan = value.length !== 10;
+  onTelephoneChange(value: string) {
+    debugger
+    console.log('value',value);
+    value = value.toString();
+    if (value.length !=10) {
+      this.messageSpan = true;
+  } else {
+      this.messageSpan = false;
+  }
 }
 
   fieldfocus() {
@@ -79,9 +81,9 @@ phonecheck(value: string) {
 
   onSubmit() {
     if (this.contact.name.trim() === '' || this.contact.email.trim() === '') {
-      this.errorMessage = 'Please fill all the details!';
+      this.errorMessage = true;
     } else {
-      this.errorMessage = '';
+      this.errorMessage = false
       const updatedContact = this.contactService.addContact(this.contact);
       // Clear the form fields
       this.contact = {
