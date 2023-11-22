@@ -55,19 +55,16 @@ export class HomepageComponent {
       address: '',
     };
   }
-  // onTelephoneKeyUp(value: string) {
-  //   this.phonecheck(value);
-  // }
+
   onTelephoneChange(value: string) {
-    debugger
-    console.log('value',value);
+    console.log('value', value);
     value = value.toString();
-    if (value.length !=10) {
+    if (value.length != 10) {
       this.messageSpan = true;
-  } else {
+    } else {
       this.messageSpan = false;
+    }
   }
-}
 
   fieldfocus() {
     const emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -119,8 +116,8 @@ export class HomepageComponent {
   }
 
   editItem() {
-    if(this.selectedItem){
-      this.contact = {...this.selectedItem};
+    if (this.selectedItem) {
+      this.contact = { ...this.selectedItem };
       this.isAddButtonVisible = false;
       this.isDialogHidden = false;
     }
@@ -145,7 +142,6 @@ export class HomepageComponent {
     }
 
   }
-  
 
 }
 
