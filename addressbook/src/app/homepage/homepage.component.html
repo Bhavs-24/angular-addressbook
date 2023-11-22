@@ -1,4 +1,3 @@
-<!-- src/app/homepage/homepage.component.html -->
 <div>
     <div class="header">
         <h1>Address Book</h1>
@@ -7,35 +6,34 @@
         <ul>
             <li><a>HOME</a></li>
             <li (click)="openDialog()" #showDialogButton><a>+ADD</a></li>
-            <li class="logo"><a><img src="Assets/blog-icon.png"></a></li>
+            <li class="logo"><a><img src="assets\blog-icon.png"></a></li>
         </ul>
     </div>
     <div class="contact-details">
         <div id="container-1" class="container">
             <h3>CONTACTS</h3>
-            
-            <ol id="contactDetails" >
-                <li *ngFor="let item of contactList" (click) = displayData(item) >
+
+            <ol id="contactDetails">
+                <li *ngFor="let item of contactList" (click)=displayData(item)>
                     <p class="capitalize largefont">{{ item?.name }}</p>
                     <p>{{ item?.email }}</p>
                     <p>{{ item?.telephone }}</p>
                 </li>
             </ol>
-            
+
         </div>
 
         <div class="containeritems">
             <div id="itemDetails" class="itemDetails">
-                <div #selectedDetails *ngIf = "isOptionsVisible">
-                    
+                <div #selectedDetails *ngIf="isOptionsVisible">
                     <div class="edit-deleteopts">
                         <div>
-                            <p  class="detailsname">{{selectedItem?.name}}</p>
-                            <p>Email:<span id="selectedemail"></span>{{selectedItem?.email}}</p>
-                            <p class="mobilefield">Mobile:<span id="selectedmobile">{{selectedItem?.telephone}}</span></p>
-                            <p class="landlinefield">Landline:<span id="selectedlandline">{{selectedItem?.landline}}</span></p>
-                            <p>Website:<span id="selectedwebsite"></span>{{selectedItem?.webaddress}}</p>
-                            <p>Address:<span id="selectedaddress"></span>{{selectedItem?.address}}</p>
+                            <p class="detailsname">{{selectedItem?.name}}</p>
+                            <p>Email:{{selectedItem?.email}}</p>
+                            <p class="mobilefield">Mobile:{{selectedItem?.telephone}}</p>
+                            <p class="landlinefield">Landline:{{selectedItem?.landline}}</p>
+                            <p>Website:{{selectedItem?.webaddress}}</p>
+                            <p>Address:{{selectedItem?.address}}</p>
                         </div>
                         <div class="icons">
                             <div class="edit-icon">
@@ -63,12 +61,12 @@
         <div #dialog [ngClass]="{'hidden': isDialogHidden,'adddialog':true}">
             <div id="myForm" class="myform">
                 <div class="contactForm">
-                    
+
                     <span class="close-icon" (click)="closeDialog()">&#x2716;</span>
                     <div id="error_message" class="error_validation"></div>
                     <div class="nameFields">
                         <div>
-                            <span #errorMessage  class="validationmsg"></span>
+                            <span #errorMessage class="validationmsg"></span>
                         </div>
                         <div>
                             <label for="name"><b>Name</b></label>
@@ -82,20 +80,19 @@
                             <label for="email"><b>Email</b></label>
                         </div>
                         <div>
-                                <input #emailInput class="inputName" type="email" id="email" required (change)="fieldfocus()" [(ngModel)]="contact.email">
-                                <span
-                                    class="validationmsg" *ngIf="validationMessageSpan">Please enter a valid email</span>
-                                     <span id="emailerror"
-                                    class="error_fields"></span>
+                            <input #emailInput class="inputName" type="email" id="email" required
+                                (change)="fieldfocus()" [(ngModel)]="contact.email">
+                            <span class="validationmsg" *ngIf="validationMessageSpan">Please enter a valid email</span>
+                            <span id="emailerror" class="error_fields"></span>
                         </div>
                     </div>
                     <div class="mobileFields">
                         <div class="mobileInputField">
                             <div>
                                 <label><b>Mobile</b></label>
-                            </div> 
+                            </div>
                             <input #telephoneInput type="number" class="teleInput" id="telephone" required
-                            (keyup)="onTelephoneKeyUp(contact.telephone)" [(ngModel)]="contact.telephone">
+                                (keyup)="onTelephoneKeyUp(contact.telephone)" [(ngModel)]="contact.telephone">
                             <div>
                                 <span *ngIf="messageSpan" class="validationmsg">Must be 10 digits</span>
                             </div>
@@ -105,9 +102,8 @@
                                 <label><b>Landline</b></label>
                             </div>
                             <div>
-                                <input class="landInput" type="number" [(ngModel)]="contact.landline" id="landline"
-                                    ><span id="message"
-                                    class="validationmsg" ></span>
+                                <input class="landInput" type="number" [(ngModel)]="contact.landline"
+                                    id="landline"><span id="message" class="validationmsg"></span>
                             </div>
                         </div>
                     </div>
@@ -127,12 +123,13 @@
                             <textarea cols="50" id="address" [(ngModel)]="contact.address"></textarea>
                         </div>
                     </div>
-                    <!-- Remaining form fields go here -->
                 </div>
             </div>
             <div>
-                <button [ngClass]="{'hidden': !isAddButtonVisible,'submitbtn':true}" (click)="onSubmit()" id="addbutton" class="hidden">Add</button>
-                <button [ngClass]="{'hidden': isAddButtonVisible}" id="updateButton" (click)="onUpdate()">Update</button>
+                <button [ngClass]="{'hidden': !isAddButtonVisible,'submitbtn':true}" (click)="onSubmit()" id="addbutton"
+                    class="hidden">Add</button>
+                <button [ngClass]="{'hidden': isAddButtonVisible,'submitbtn':true}" id="updateButton"
+                    (click)="onUpdate()">Update</button>
             </div>
         </div>
     </div>
